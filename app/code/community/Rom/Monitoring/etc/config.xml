@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Rom
+ * @package     Rom_Monitoring
+ * @copyright   Copyright (c) 2013 ROM - Agence de communication (http://www.rom.fr/)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author      André Herrn <info@andre-herrn.de>
+ */
+-->
+<config>
+    <modules>
+        <Rom_Monitoring>
+            <version>0.1.0</version>
+        </Rom_Monitoring>
+    </modules>  
+    <global>
+        <blocks>
+            <rommonitoring>
+                <class>Rom_Monitoring_Block</class>
+            </rommonitoring>
+        </blocks>
+        <models>
+           <rommonitoring>
+               <class>Rom_Monitoring_Model</class>
+               <resourceModel>rommonitoring_mysql4</resourceModel>
+            </rommonitoring>
+        </models>
+        <helpers>
+            <rommonitoring>
+                <class>Rom_Monitoring_Helper</class>
+            </rommonitoring>
+        </helpers>
+        <template>
+            <email>
+                <rommonitoring_email_template_order_check translate="label" module="rommonitoring">
+                    <label>Rom_Monitoring Order Check</label>
+                    <file>rommonitoring/order_check.html</file>
+                    <type>text</type>
+                </rommonitoring_email_template_order_check>
+            </email>
+        </template>
+    </global>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Rom_Monitoring>
+                    <files>
+                        <default>Rom_Monitoring.csv</default>
+                    </files>
+                </Rom_Monitoring>
+            </modules>
+        </translate>
+    </adminhtml>
+    <default>
+    </default>
+</config>

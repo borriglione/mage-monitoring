@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Rom
+ * @package     Rom_Monitoring
+ * @copyright   Copyright (c) 2013 ROM - Agence de communication (http://www.rom.fr/)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author      André Herrn <info@andre-herrn.de>
+ */
+-->
+<config>
+    <sections>
+        <rommonitoring translate="label">
+            <label>ROM Monitoring</label>
+            <tab>general</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>120</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <order_check translate="label">
+                    <label>Order Check</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <ranges translate="comment">
+                            <label>Ranges</label>
+                            <frontend_model>rommonitoring/adminhtml_system_config_form_field_ranges</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ranges>
+                    </fields>
+                </order_check>
+            </groups>
+        </rommonitoring>
+    </sections>
+</config>
