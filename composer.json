@@ -1,0 +1,14 @@
+{
+  "name": "rom/monitoring",
+  "license": ["OSL-3.0"],
+  "type": "magento-module",
+  "description": "This module checks if Magento is up and has a pre-defined amount of orders",
+  "homepage": "https://github.com/borriglione/mage-monitoring",
+  "authors":[{
+    "name": "André Herrn",
+    "email": "info@andre-herrn.de"
+  }],
+  "require": {
+    "magento-hackathon/magento-composer-installer": "*"
+  }
+}
