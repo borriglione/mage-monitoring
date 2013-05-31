@@ -1,5 +1,5 @@
 shell/rom_monitoring.php shell/rom_monitoring.php
-shell/rom_monitoring/ini/exception_mail.ini shell/rom_monitoring/ini/exception_mail.ini
+shell/rom_monitoring/ini shell/rom_monitoring/ini
 app/code/community/Rom/Monitoring app/code/community/Rom/Monitoring
 app/etc/modules/Rom_Monitoring.xml app/etc/modules/Rom_Monitoring.xml
 app/locale/en_US/template/email/rommonitoring app/locale/en_US/template/email/rommonitoring
