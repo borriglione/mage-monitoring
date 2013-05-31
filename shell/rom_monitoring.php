@@ -25,8 +25,9 @@ class Rom_Shell_Monitoring extends Mage_Shell_Abstract
     public function run()
     {
         echo "Start Rom Monitoring Test\r\n";
-
-
+        
+        Mage::getModel("rommonitoring/observer")->check();
+        
         echo "End Rom Monitoring Test\r\n";
     }
 

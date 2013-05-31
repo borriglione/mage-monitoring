@@ -3,4 +3,4 @@ shell/rom_monitoring/ini/exception_mail.ini shell/rom_monitoring/ini/exception_m
 app/code/community/Rom/Monitoring app/code/community/Rom/Monitoring
 app/etc/modules/Rom_Monitoring.xml app/etc/modules/Rom_Monitoring.xml
 app/locale/en_US/template/email/rommonitoring app/locale/en_US/template/email/rommonitoring
-app/design/adminhtml/default/default/template/rommonitoring/system/config/ranges.phtml app/design/adminhtml/default/default/template/rommonitoring/system/config/ranges.phtml
+app/design/adminhtml/default/default/template/rommonitoring app/design/adminhtml/default/default/template/rommonitoring

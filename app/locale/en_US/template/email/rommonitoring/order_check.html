@@ -1,0 +1,23 @@
+<!--@subject {{var store.getFrontendName()}} | Order Monitoring Check | Range failed @-->
+<!--@vars
+{"var day":"Day",
+"var from_time":"From Time",
+"var to_time":"To Time",
+"var reference_order_amount":"Reference order amount",
+"var calculated_order_amount":"Calculated order amount"}
+@-->
+
+Dear Monitorer,
+
+a reference order amount for a time-range was not reached.
+
+Store: {{var store.getFrontendName()}}
+Day: {{var day}}
+From Time: {{var from_time}}
+To Time: {{var to_time}}
+Reference order amount: {{var reference_order_amount}}
+Calculated order amount: {{var calculated_order_amount}}
+
+Your faithful employee,
+
+Order Monitoring

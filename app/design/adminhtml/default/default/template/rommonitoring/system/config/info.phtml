@@ -1,0 +1,33 @@
+<table cellspacing="0" class="switcher" width="100%" class="form-list">
+    <col width="220px" />
+    <col />
+    <thead>
+        <tr>
+            <th colspan="2">
+                <?php echo $this->escapeHtml($this->getFieldsetLabel()) ?> <?php echo $this->__('(Example)'); ?>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><?php echo $this->__('From Time'); ?></td>
+            <td>12:00</td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('To Time'); ?></td>
+            <td>15:30</td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Order count'); ?></td>
+            <td>35</td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td><?php echo $this->__('Additional informations'); ?></td>
+            <td><?php echo $this->__('Time ranges can overlap, 00:00 ist allowed, 24:00 is not allowed'); ?></td>
+        </tr>
+    </tbody>
+</table>

@@ -25,7 +25,22 @@
                <class>Rom_Monitoring_Model</class>
                <resourceModel>rommonitoring_mysql4</resourceModel>
             </rommonitoring>
+            <rommonitoring_mysql4>
+                <class>Rom_Monitoring_Model_Mysql4</class>
+                <entities>
+                    <log>
+                        <table>rommonitoring_log</table>
+                    </log>
+                </entities>
+            </rommonitoring_mysql4>
         </models>
+        <resources>
+            <rommonitoring_setup>
+                <setup>
+                    <module>Rom_Monitoring</module>
+                </setup>
+            </rommonitoring_setup>
+        </resources>
         <helpers>
             <rommonitoring>
                 <class>Rom_Monitoring_Helper</class>
@@ -33,11 +48,11 @@
         </helpers>
         <template>
             <email>
-                <rommonitoring_email_template_order_check translate="label" module="rommonitoring">
-                    <label>Rom_Monitoring Order Check</label>
+                <rommonitoring_order_check_email_template translate="label" module="rommonitoring">
+                    <label>Rom Monitoring Order Check</label>
                     <file>rommonitoring/order_check.html</file>
                     <type>text</type>
-                </rommonitoring_email_template_order_check>
+                </rommonitoring_order_check_email_template>
             </email>
         </template>
     </global>
@@ -53,5 +68,13 @@
         </translate>
     </adminhtml>
     <default>
+        <rommonitoring>
+            <order_check>
+                <order_status>processing,complete,closed</order_status>
+                <email_template>rommonitoring_order_check_email_template</email_template>
+                <sender_mail_identity>sales</sender_mail_identity>
+            </order_check>
+        </rommonitoring>
     </default>
+    <!-- No Cronjob config here => Script shell/rom_monitoring.php has to be executred by Server Cron -->
 </config>
