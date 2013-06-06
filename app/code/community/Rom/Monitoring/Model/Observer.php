@@ -10,6 +10,8 @@ class Rom_Monitoring_Model_Observer
 {
     public function check()
     {
-        Mage::getModel("rommonitoring/monitorer_orderCheck")->check();
+        if (true === Mage::getModel("rommonitoring/config")->getOrderCheckIsActive()) {
+            Mage::getModel("rommonitoring/monitorer_orderCheck")->check();
+        }
     }
 }

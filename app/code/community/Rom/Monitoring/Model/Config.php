@@ -8,6 +8,11 @@
  */
 class Rom_Monitoring_Model_Config
 {
+    public function getOrderCheckIsActive()
+    {
+        return (1 == Mage::getStoreConfig("rommonitoring/order_check/active"));
+    }
+    
     public function getOrderCheckRanges()
     {
         return unserialize(Mage::getStoreConfig("rommonitoring/order_check/ranges"));
