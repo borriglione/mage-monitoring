@@ -101,8 +101,8 @@ class Rom_Shell_Core_Exception
     protected function buildExceptionMailBody($exception)
     {
         $reportMessage = sprintf(
-            "An error happened during the Startup of the Magento Monitoring Module.\n".
-            "The Monitoring-Testsuite could not been started.\n\n".
+            "An error happened during the Startup or Processing of the Magento Monitoring Module.\n".
+            "The Monitoring-Testsuite could not been started or completed.\n\n".
             "Error Message:          %s\n".
             "Code:                   %s\n".
             "File:                   %s\n".
