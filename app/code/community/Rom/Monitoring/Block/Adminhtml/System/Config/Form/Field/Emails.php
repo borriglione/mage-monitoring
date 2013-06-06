@@ -5,7 +5,7 @@ class Rom_Monitoring_Block_Adminhtml_System_Config_Form_Field_Emails extends Mag
     {
         $this->addColumn('email', array(
             'label' => Mage::helper('adminhtml')->__('Email'),
-            'style' => 'width:250px',
+            'style' => 'width:200px',
             'class' => 'required-entry validate-email'
         ));
 

@@ -45,7 +45,7 @@ class Rom_Monitoring_Model_Monitorer_OrderCheck extends Rom_Monitoring_Model_Mon
             }
             
             //Save range as checked
-            //$this->getLogHandler()->saveRange($configuredRange, $orderCount);
+            $this->getLogHandler()->saveRange($configuredRange, $orderCount);
         }
     }
     
@@ -95,11 +95,18 @@ class Rom_Monitoring_Model_Monitorer_OrderCheck extends Rom_Monitoring_Model_Mon
             Mage::helper("rommonitoring/data")->getLocalTimestampForTime($range["to_time"])
         );
         
-        return Mage::getModel("sales/order")
+        $orderCollection = Mage::getModel("sales/order")
             ->getCollection()
             ->addFieldToFilter("status", array("in" => Mage::getModel("rommonitoring/config")->getOrderCheckOrderStatus()))
-            ->addFieldToFilter("created_at", array("from" => "", "to" => ""))
-            ->count();
+            ->addFieldToFilter(
+                "created_at",
+                array(
+                    "from" => $fromGmtDate,
+                    "to" => $toGmtDate
+                )
+            );
+        
+        return count($orderCollection);
     }
     
     /**
