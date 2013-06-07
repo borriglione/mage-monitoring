@@ -71,18 +71,30 @@ class Rom_Monitoring_Block_Adminhtml_System_Config_Form_Field_Ranges extends Mag
     protected function _renderCellTemplate($columnName)
     {
         $inputName  = $this->getElement()->getName() . '[#{_id}][' . $columnName . ']';
-     
+        
         if ($columnName == "count_type") {
             return $this->getCountTypeRenderer()
                     ->setName($inputName)
                     ->setTitle($columnName)
                     ->setExtraParams('style="width:80px"')
                     ->setClass('required-entry')
-                    ->setOptions(
-                        Mage::getModel("rommonitoring/system_config_source_countType")
-                            ->toOptionArray(null))
+                    ->setOptions($this->getElement()->getValues())
                     ->toHtml();
         }
         return parent::_renderCellTemplate($columnName);
+    }
+    
+    /**
+      * Assign extra parameters to row
+      *
+      * @param Varien_Object $row
+      */
+    protected function _prepareArrayRow(Varien_Object $row)
+    {
+        $row->setData(
+            'option_extra_attr_' .
+            $this->getCountTypeRenderer()->calcOptionHash($row->getData('count_type')),
+            'selected="selected"'
+        );
     }
 }
