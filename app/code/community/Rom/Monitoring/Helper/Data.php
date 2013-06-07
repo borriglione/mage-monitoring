@@ -87,7 +87,7 @@ class Rom_Monitoring_Helper_Data extends Mage_Core_Helper_Abstract
         $fromTime = str_replace(":", "", $range["from_time"]);
         $toTime = str_replace(":", "", $range["to_time"]);
         
-        return $fromTime."_".$toTime;
+        return $fromTime."_".$toTime."_".$range["count_type"];
     }
 
 }
