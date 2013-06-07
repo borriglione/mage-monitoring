@@ -22,12 +22,20 @@
             <td>35</td>
         </tr>
         <tr>
+            <td><?php echo $this->__('Count type'); ?></td>
+            <td><?php echo $this->__('Minimum'); ?></td>
+        </tr>
+        <tr>
             <td> </td>
             <td> </td>
         </tr>
         <tr>
             <td><?php echo $this->__('Additional informations'); ?></td>
-            <td><?php echo $this->__('Time ranges can overlap, 00:00 ist allowed, 24:00 is not allowed'); ?></td>
+            <td>
+                <?php echo $this->__('Time ranges can overlap, 00:00 ist allowed, 24:00 is not allowed'); ?><br />
+                <?php echo $this->__('If "minimum" is setup for "Type" an alert mail will be sent if the order count was not reached in the time rage.'); ?><br />
+                <?php echo $this->__('If "maximum" is setup for "Type" an alert mail will be sent if the order count was exceeded in the time rage.'); ?>
+            </td>
         </tr>
     </tbody>
 </table>

@@ -1,4 +1,4 @@
-<!--@subject {{var store.getFrontendName()}} | Order Monitoring Check | Range failed @-->
+<!--@subject {{var store.getFrontendName()}} | Order Monitoring Check | Minimum alert @-->
 <!--@vars
 {"var day":"Day",
 "var from_time":"From Time",
@@ -15,7 +15,7 @@ Store: {{var store.getFrontendName()}}
 Day: {{var day}}
 From Time: {{var from_time}}
 To Time: {{var to_time}}
-Reference order amount: {{var reference_order_amount}}
+Minimum order amount: {{var reference_order_amount}}
 Calculated order amount: {{var calculated_order_amount}}
 
 Your faithful employee,

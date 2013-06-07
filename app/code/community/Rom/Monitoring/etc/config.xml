@@ -48,11 +48,16 @@
         </helpers>
         <template>
             <email>
-                <rommonitoring_order_check_email_template translate="label" module="rommonitoring">
-                    <label>Rom Monitoring Order Check</label>
-                    <file>rommonitoring/order_check.html</file>
+                <rommonitoring_order_check_email_template_min translate="label" module="rommonitoring">
+                    <label>Rom Monitoring Order Check | Minimum</label>
+                    <file>rommonitoring/order_check_min.html</file>
                     <type>text</type>
-                </rommonitoring_order_check_email_template>
+                </rommonitoring_order_check_email_template_min>
+                <rommonitoring_order_check_email_template_max translate="label" module="rommonitoring">
+                    <label>Rom Monitoring Order Check | Maximum</label>
+                    <file>rommonitoring/order_check_max.html</file>
+                    <type>text</type>
+                </rommonitoring_order_check_email_template_max>
             </email>
         </template>
     </global>
@@ -71,7 +76,8 @@
         <rommonitoring>
             <order_check>
                 <order_status>processing,complete,closed</order_status>
-                <email_template>rommonitoring_order_check_email_template</email_template>
+                <email_template_min>rommonitoring_order_check_email_template_min</email_template_min>
+                <email_template_max>rommonitoring_order_check_email_template_max</email_template_max>
                 <sender_mail_identity>sales</sender_mail_identity>
             </order_check>
         </rommonitoring>

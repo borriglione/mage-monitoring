@@ -39,8 +39,8 @@ class Rom_Monitoring_Model_Monitorer_OrderCheck extends Rom_Monitoring_Model_Mon
             //Get Order count for time range
             $orderCount = $this->getOrderCountForTimeRange($configuredRange);
             
-            //Check if order cound matches time range -> if not send an exception mail
-            if ((int) $orderCount < (int) $configuredRange["order_count"]) {
+            //Range Check
+            if (true === $this->isRangeCheckFailed($configuredRange, $orderCount)) {
                 $this->sendOrderCheckFailedMail($configuredRange, $orderCount);
             }
             
@@ -131,5 +131,32 @@ class Rom_Monitoring_Model_Monitorer_OrderCheck extends Rom_Monitoring_Model_Mon
         
         $this->sendCheckFailedMail($senderKey, $receiverEmails, $eMailTemplate, $eMailTemplateData);
     }
-
+    
+    /**
+     * Check time range by calculated order count
+     * 
+     * @param array $range
+     * @param int   $orderCount
+     * @return boolean
+     */
+    public function isRangeCheckFailed($configuredRange, $orderCount)
+    {
+        //Check if order cound matches time range -> if not send an exception mail
+        if ($configuredRange["count_type"] == Rom_Monitoring_Model_System_Config_Source_CountType::COUNT_TYPE_MIN) {
+            if ((int) $orderCount < (int) $configuredRange["order_count"]) {
+                return true;
+            }
+            return false;
+        } elseif ($configuredRange["count_type"] == Rom_Monitoring_Model_System_Config_Source_CountType::COUNT_TYPE_MAX) {
+            if ((int) $orderCount > (int) $configuredRange["order_count"]) {
+                return true;
+            }
+            return false;
+        } else {
+            Mage::throwException(
+                Mage::helper('rommonitoring')->__('Unknown count type "%s" for time range detected', $configuredRange["count_type"])
+            );
+            
+        }
+    }
 }
