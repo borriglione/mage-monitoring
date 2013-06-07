@@ -120,7 +120,14 @@ class Rom_Monitoring_Model_Monitorer_OrderCheck extends Rom_Monitoring_Model_Mon
     {
         $senderKey = Mage::getModel("rommonitoring/config")->getOrderCheckEmailSender();
         $receiverEmails = Mage::getModel("rommonitoring/config")->getOrderCheckEmailReceiver();
-        $eMailTemplate = Mage::getModel("rommonitoring/config")->getOrderCheckEmailTemplate();
+        
+        //Get correct alert mail template
+        if ($configuredRange["count_type"] == Rom_Monitoring_Model_System_Config_Source_CountType::COUNT_TYPE_MIN) {
+            $eMailTemplate = Mage::getModel("rommonitoring/config")->getOrderCheckEmailTemplateMinimum();
+        } elseif ($configuredRange["count_type"] == Rom_Monitoring_Model_System_Config_Source_CountType::COUNT_TYPE_MAX) {
+            $eMailTemplate = Mage::getModel("rommonitoring/config")->getOrderCheckEmailTemplateMaximum();
+        }
+        
         $eMailTemplateData = array(
             "day" => date("Y-m-d", Mage::getModel('core/date')->timestamp(time())),
             "from_time" => $configuredRange["from_time"],

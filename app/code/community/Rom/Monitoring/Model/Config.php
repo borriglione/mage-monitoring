@@ -32,8 +32,13 @@ class Rom_Monitoring_Model_Config
     {
         return unserialize(Mage::getStoreConfig("rommonitoring/order_check/email_receiver"));
     }
-    public function getOrderCheckEmailTemplate()
+    public function getOrderCheckEmailTemplateMinimum()
     {
-        return Mage::getStoreConfig("rommonitoring/order_check/email_template");
+        return Mage::getStoreConfig("rommonitoring/order_check/email_template_min");
+    }
+    
+    public function getOrderCheckEmailTemplateMaximum()
+    {
+        return Mage::getStoreConfig("rommonitoring/order_check/email_template_max");
     }
 }
