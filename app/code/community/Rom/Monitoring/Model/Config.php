@@ -18,6 +18,16 @@ class Rom_Monitoring_Model_Config
         return unserialize(Mage::getStoreConfig("rommonitoring/order_check/ranges"));
     }
     
+    public function getStatisticDateFrom()
+    {
+        return Mage::getStoreConfig("rommonitoring/order_check/statistic_count_date_from");
+    }
+    
+    public function getStatisticDateTo()
+    {
+        return Mage::getStoreConfig("rommonitoring/order_check/statistic_count_date_to");
+    }
+    
     public function getOrderCheckOrderStatus()
     {
         return explode(",", Mage::getStoreConfig("rommonitoring/order_check/order_status"));

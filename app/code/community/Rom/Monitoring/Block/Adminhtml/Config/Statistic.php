@@ -8,5 +8,27 @@
  */
 class Rom_Monitoring_Block_Adminhtml_Config_Statistic extends Mage_Adminhtml_Block_Abstract
 {
-
+    /**
+     * Get minimum statistic for configured time ranges
+     * 
+     * @return array
+     */
+    public function getMinRangeStatistic()
+    {
+        return
+            Mage::getModel("rommonitoring/config_statistic")
+                ->getMinimumStatistic();
+    }
+    
+    /**
+     * Get maximum statistic for configured time ranges
+     * 
+     * @return array
+     */
+    public function getMaxRangeStatistic()
+    {
+        return
+            Mage::getModel("rommonitoring/config_statistic")
+                ->getMaximumStatistic();
+    }
 }

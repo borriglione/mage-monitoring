@@ -1,1 +1,67 @@
 <h3><?php echo $this->__("Order Monitoring - Range statistic");?></h3>
+
+<?php $minRangeStatistic = $this->getMinRangeStatistic();?>
+<h3><?php echo $this->__("Minimum amounts");?></h3>
+<?php if (is_array($minRangeStatistic)): ?>
+    <div class="grid">
+        <table class="data">
+            <thead>
+                <tr class="headings">
+                    <th><?php echo $this->__("Range from");?></th>
+                    <th><?php echo $this->__("Range to");?></th>
+                    <?php for ($i = 1;$i<=10;$i++): ?>
+                         <th><?php echo $this->__("Amount %s", $i);?></th>
+                    <?php endfor; ?>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($minRangeStatistic as $key => $minRange):?>
+                    <tr class="<?php echo (($key%2) == 0) ? "even" : "odd" ?>">
+                        <td><?php echo $minRange["from_time"];?></td>
+                        <td><?php echo $minRange["to_time"];?></td>
+                        <?php for ($i = 0;$i<10;$i++): ?>
+                            <td>
+                            <?php if (isset($minRange["statistic"][$i])): ?>
+                                <?php echo $minRange["statistic"][$i]["amount"];?> | <?php echo $minRange["statistic"][$i]["created_at"];?>
+                            <?php endif; ?>
+                            </td>
+                        <?php endfor; ?>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+<?php endif; ?>
+
+<?php $maxRangeStatistic = $this->getMaxRangeStatistic();?>
+<h3><?php echo $this->__("Maximum amounts");?></h3>
+<?php if (is_array($maxRangeStatistic)): ?>
+    <div class="grid">
+        <table class="data">
+            <thead>
+                <tr class="headings">
+                    <th><?php echo $this->__("Range from");?></th>
+                    <th><?php echo $this->__("Range to");?></th>
+                    <?php for ($i = 1;$i<=10;$i++): ?>
+                         <th><?php echo $this->__("Amount %s", $i);?></th>
+                    <?php endfor; ?>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($maxRangeStatistic as $key => $minRange):?>
+                    <tr class="<?php echo (($key%2) == 0) ? "even" : "odd" ?>">
+                        <td><?php echo $minRange["from_time"];?></td>
+                        <td><?php echo $minRange["to_time"];?></td>
+                        <?php for ($i = 0;$i<10;$i++): ?>
+                            <td>
+                            <?php if (isset($minRange["statistic"][$i])): ?>
+                                <?php echo $minRange["statistic"][$i]["amount"];?> | <?php echo $minRange["statistic"][$i]["created_at"];?>
+                            <?php endif; ?>
+                            </td>
+                        <?php endfor; ?>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+<?php endif; ?>
