@@ -4,3 +4,4 @@ app/code/community/Rom/Monitoring app/code/community/Rom/Monitoring
 app/etc/modules/Rom_Monitoring.xml app/etc/modules/Rom_Monitoring.xml
 app/locale/en_US/template/email/rommonitoring app/locale/en_US/template/email/rommonitoring
 app/design/adminhtml/default/default/template/rommonitoring app/design/adminhtml/default/default/template/rommonitoring
+app/design/adminhtml/default/default/layout/rommonitoring.xml app/design/adminhtml/default/default/layout/rommonitoring.xml

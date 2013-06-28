@@ -55,6 +55,34 @@
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
                         </ranges>
+                        <statistic_count_date_from>
+                            <label>Statistic count - date from</label>
+                            <comment>Format: 2013-06-23</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </statistic_count_date_from>
+                        <statistic_count_date_to>
+                           <label>Statistic count - date to</label>
+                            <comment>Format: 2013-08-23</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </statistic_count_date_to>
+                        <statistic_count_date_button>
+                           <label>Statistic count - Create report</label>
+                            <comment>Create a statistic about the configured time-ranges. The statistic will be based on the "date from", "date to" and the "order status". If one of this values were changed please save the configuration before you run the statistic.</comment>
+                            <frontend_model>rommonitoring/adminhtml_system_config_statistic_button</frontend_model>
+                            <frontend_type>button</frontend_type>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </statistic_count_date_button>
                         <order_status translate="label">
                             <label>Allowed order status codes for count check</label>
                             <frontend_type>multiselect</frontend_type>

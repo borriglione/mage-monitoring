@@ -61,7 +61,25 @@
             </email>
         </template>
     </global>
+    <admin>
+        <routers>
+            <rommonitoring>
+                <use>admin</use>
+                <args>
+                    <module>Rom_Monitoring</module>
+                    <frontName>rommonitoring</frontName>
+                </args>
+            </rommonitoring>
+        </routers>
+    </admin>
     <adminhtml>
+        <layout>
+            <updates>
+                <rommonitoring>
+                    <file>rommonitoring.xml</file>
+                </rommonitoring>
+            </updates>
+        </layout>
         <translate>
             <modules>
                 <Rom_Monitoring>
