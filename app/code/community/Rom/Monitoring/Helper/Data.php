@@ -8,7 +8,7 @@
  */
 class Rom_Monitoring_Helper_Data extends Mage_Core_Helper_Abstract
 {
-    const FILENAME = "rommonitoring.xml";
+    const FILENAME = "rommonitoring.log";
     
     /**
      * Log message

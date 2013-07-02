@@ -28,7 +28,9 @@ class Rom_Monitoring_Model_Monitorer_OrderCheck extends Rom_Monitoring_Model_Mon
         foreach ($this->getConfig()->getOrderCheckRanges() as $configuredRange) {
             //Logging
             Mage::helper("rommonitoring/data")->log(
-                "Start to process configured time range: ".var_export($configuredRange, true)
+                "Start to process configured time range: "
+                .var_export($configuredRange, true)
+                ." for scope ".$this->getConfig()->type
             );
             
             //Check if the range could be checked
