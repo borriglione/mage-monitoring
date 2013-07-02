@@ -89,5 +89,27 @@ class Rom_Monitoring_Helper_Data extends Mage_Core_Helper_Abstract
         
         return $fromTime."_".$toTime."_".$range["count_type"];
     }
+    
+    /**
+     * Define scope -> global, website or store
+     * 
+     * @param Rom_Monitoring_Model_Config
+     * @param string $scope
+     * @return Rom_Monitoring_Model_Config
+     */
+    public function defineScope($config, $scope)
+    {
+        if (false !== strpos($scope, Rom_Monitoring_Model_System_Config_Source_Scopes::KEY_GLOBAL)) {
+            return $config->setTypeGlobal();
+        } elseif (false !== strpos($scope, Rom_Monitoring_Model_System_Config_Source_Scopes::KEY_WEBSITE)) {
+            $websiteId = str_replace(Rom_Monitoring_Model_System_Config_Source_Scopes::KEY_WEBSITE, "", $scope);
+            return $config->setTypeWebsite($websiteId);
+        } elseif (false !== strpos($scope, Rom_Monitoring_Model_System_Config_Source_Scopes::KEY_STORE)) {
+            $websiteId = str_replace(Rom_Monitoring_Model_System_Config_Source_Scopes::KEY_STORE, "", $scope);
+            return $config->setTypeStore($websiteId);
+        }
+        
+        return null;
+    }
 
 }

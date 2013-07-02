@@ -16,8 +16,8 @@
             <frontend_type>text</frontend_type>
             <sort_order>120</sort_order>
             <show_in_default>1</show_in_default>
-            <show_in_website>0</show_in_website>
-            <show_in_store>0</show_in_store>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
             <groups>
                 <info translate="label">
                     <label>Order Monitoring Informations</label>
@@ -25,16 +25,16 @@
                     <frontend_model>rommonitoring/adminhtml_system_config_info</frontend_model>
                     <sort_order>0</sort_order>
                     <show_in_default>1</show_in_default>
-                    <show_in_website>0</show_in_website>
-                    <show_in_store>0</show_in_store>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
                 </info>
                 <order_check translate="label">
                     <label>Order Monitoring</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>10</sort_order>
                     <show_in_default>1</show_in_default>
-                    <show_in_website>0</show_in_website>
-                    <show_in_store>0</show_in_store>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
                     <fields>
                         <active translate="label">
                             <label>Enabled</label>
@@ -52,8 +52,8 @@
                             <source_model>rommonitoring/system_config_source_countType</source_model>
                             <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
                         </ranges>
                         <statistic_count_date_from>
                             <label>Statistic count - date from</label>
@@ -61,8 +61,8 @@
                             <frontend_type>text</frontend_type>
                             <sort_order>11</sort_order>
                             <show_in_default>1</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
                         </statistic_count_date_from>
                         <statistic_count_date_to>
                            <label>Statistic count - date to</label>
@@ -70,8 +70,8 @@
                             <frontend_type>text</frontend_type>
                             <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
                         </statistic_count_date_to>
                         <statistic_count_date_button>
                            <label>Statistic count - Create report</label>
@@ -80,8 +80,8 @@
                             <frontend_type>button</frontend_type>
                             <sort_order>13</sort_order>
                             <show_in_default>1</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
                         </statistic_count_date_button>
                         <order_status translate="label">
                             <label>Allowed order status codes for count check</label>
@@ -89,9 +89,19 @@
                             <source_model>Mage_Adminhtml_Model_System_Config_Source_Order_Status</source_model>
                             <sort_order>15</sort_order>
                             <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order_status>
+                        <scopes translate="label">
+                            <label>Scopes</label>
+                            <comment>The default scope is "Global". If you select an additional website or store, the orders of this store/website will be proved against the configured rules in this scope.</comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>rommonitoring/system_config_source_scopes</source_model>
+                            <sort_order>17</sort_order>
+                            <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
-                        </order_status>
+                        </scopes>
                         <email_template_min translate="label">
                             <label>Email Template Minimum Alert</label>
                             <comment>If the minimum order count for an order was not reached, this email template is used for the email.</comment>
@@ -99,8 +109,8 @@
                             <source_model>adminhtml/system_config_source_email_template</source_model>
                             <sort_order>20</sort_order>
                             <show_in_default>1</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
                         </email_template_min>
                         <email_template_max translate="label">
                             <label>Email Template Maximum Alert</label>
@@ -109,8 +119,8 @@
                             <source_model>adminhtml/system_config_source_email_template</source_model>
                             <sort_order>21</sort_order>
                             <show_in_default>1</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
                         </email_template_max>
                         <sender_mail_identity translate="label">
                             <label>Email Sender</label>
@@ -127,8 +137,8 @@
                             <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
                             <sort_order>25</sort_order>
                             <show_in_default>1</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
                         </email_receiver>
                     </fields>
                 </order_check>

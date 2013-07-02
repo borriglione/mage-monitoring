@@ -25,7 +25,7 @@ class Rom_Monitoring_Model_Monitorer_OrderCheck extends Rom_Monitoring_Model_Mon
          *    [order_count] => 2
          * )
          */
-        foreach (Mage::getModel("rommonitoring/config")->getOrderCheckRanges() as $configuredRange) {
+        foreach ($this->getConfig()->getOrderCheckRanges() as $configuredRange) {
             //Logging
             Mage::helper("rommonitoring/data")->log(
                 "Start to process configured time range: ".var_export($configuredRange, true)
@@ -97,7 +97,7 @@ class Rom_Monitoring_Model_Monitorer_OrderCheck extends Rom_Monitoring_Model_Mon
         
         $orderCollection = Mage::getModel("sales/order")
             ->getCollection()
-            ->addFieldToFilter("status", array("in" => Mage::getModel("rommonitoring/config")->getOrderCheckOrderStatus()))
+            ->addFieldToFilter("status", array("in" => $this->getConfig()->getOrderCheckOrderStatus()))
             ->addFieldToFilter(
                 "created_at",
                 array(
@@ -105,6 +105,10 @@ class Rom_Monitoring_Model_Monitorer_OrderCheck extends Rom_Monitoring_Model_Mon
                     "to" => $toGmtDate
                 )
             );
+        $storeIdFilter = $this->getStoreIdFilter();
+        if (true == is_array($storeIdFilter) && count($storeIdFilter) > 0) {
+            $orderCollection->addFieldToFilter("store_id", array("in" => $storeIdFilter));
+        }
         
         return count($orderCollection);
     }
@@ -118,14 +122,14 @@ class Rom_Monitoring_Model_Monitorer_OrderCheck extends Rom_Monitoring_Model_Mon
      */
     public function sendOrderCheckFailedMail($configuredRange, $orderCount)
     {
-        $senderKey = Mage::getModel("rommonitoring/config")->getOrderCheckEmailSender();
-        $receiverEmails = Mage::getModel("rommonitoring/config")->getOrderCheckEmailReceiver();
+        $senderKey = $this->getConfig()->getOrderCheckEmailSender();
+        $receiverEmails = $this->getConfig()->getOrderCheckEmailReceiver();
         
         //Get correct alert mail template
         if ($configuredRange["count_type"] == Rom_Monitoring_Model_System_Config_Source_CountType::COUNT_TYPE_MIN) {
-            $eMailTemplate = Mage::getModel("rommonitoring/config")->getOrderCheckEmailTemplateMinimum();
+            $eMailTemplate = $this->getConfig()->getOrderCheckEmailTemplateMinimum();
         } elseif ($configuredRange["count_type"] == Rom_Monitoring_Model_System_Config_Source_CountType::COUNT_TYPE_MAX) {
-            $eMailTemplate = Mage::getModel("rommonitoring/config")->getOrderCheckEmailTemplateMaximum();
+            $eMailTemplate = $this->getConfig()->getOrderCheckEmailTemplateMaximum();
         }
         
         $eMailTemplateData = array(

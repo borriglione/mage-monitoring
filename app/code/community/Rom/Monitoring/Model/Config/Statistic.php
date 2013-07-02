@@ -102,6 +102,7 @@ class Rom_Monitoring_Model_Config_Statistic
             ." AND DATE(created_at) > '%s'"
             ." AND DATE(created_at) < '%s'"
             ." AND status IN ('%s')"
+            ." %s"
             ." GROUP BY DATE(created_at)"
             ." ORDER BY amount %s"
             ."%s",
@@ -110,7 +111,8 @@ class Rom_Monitoring_Model_Config_Statistic
             $range["to_time"],
             $this->getConfig()->getStatisticDateFrom(),
             $this->getConfig()->getStatisticDateTo(),
-            implode("','", Mage::getModel("rommonitoring/config")->getOrderCheckOrderStatus()),
+            implode("','", $this->getConfig()->getOrderCheckOrderStatus()),
+            $this->getStoreIdFilter(),
             $sortOrder,
             $limit
         );
@@ -148,6 +150,21 @@ class Rom_Monitoring_Model_Config_Statistic
     {
         if (true === is_null($this->config)) {
             $this->config = Mage::getModel("rommonitoring/config");
+            
+            //Check scope
+            $scope = Rom_Monitoring_Model_System_Config_Source_Scopes::KEY_GLOBAL;
+            if (false === is_null(Mage::app()->getRequest()->getParam("website_key"))) {
+                $scope = Rom_Monitoring_Model_System_Config_Source_Scopes::KEY_WEBSITE
+                         .Mage::app()->getRequest()->getParam("website_key");
+            }
+            if (false === is_null(Mage::app()->getRequest()->getParam("store_key"))) {
+                $scope = Rom_Monitoring_Model_System_Config_Source_Scopes::KEY_STORE
+                         .Mage::app()->getRequest()->getParam("store_key");
+            }
+            
+            //Set scoped config model
+            $this->config = Mage::helper("rommonitoring/data")
+                ->defineScope($this->config, $scope);
         }
         return $this->config;
     }
@@ -163,5 +180,38 @@ class Rom_Monitoring_Model_Config_Statistic
         $datetime2 = new DateTime($this->getConfig()->getStatisticDateTo());
         $interval = $datetime1->diff($datetime2);
         return $interval->days -1;
+    }
+    
+    /**
+     * Check if filter by store_id has to be added
+     * 
+     * @return string
+     */
+    protected function getStoreIdFilter()
+    {
+        if ($this->config->isTypeGlobal()) {
+            return "";
+        }
+        
+        if ($this->config->isTypeStore()) {
+            return sprintf(
+                "AND store_id = %s",
+                (int) Mage::getModel('core/store')->load(
+                    Mage::app()->getRequest()->getParam("store_key")
+                )->getId()
+            );
+        }
+        
+        if ($this->config->isTypeWebsite()) {
+            return sprintf(
+                "AND store_id IN (%s)",
+                implode(
+                    ",",
+                    Mage::app()->getWebsite(Mage::app()->getRequest()->getParam("website_key"))
+                        ->getStoreIds()
+                )
+               
+            );
+        }
     }
 }

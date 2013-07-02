@@ -9,6 +9,12 @@
 class Rom_Monitoring_Model_Monitorer_Abstract extends Varien_Object
 {
     /**
+     * @var Rom_Monitoring_Model_Config
+     */
+    protected $config = null;
+    
+    
+    /**
      * var Rom_Monitoring_Model_Log
      */
     protected $logHandler = null;
@@ -56,5 +62,50 @@ class Rom_Monitoring_Model_Monitorer_Abstract extends Varien_Object
                 Mage::helper("rommonitoring/data")->__("Failed Check Mail could not be sent! Log: %s", var_export($eMailTemplateData, true))
             );
         }
-}
+    }
+
+    /**
+     * Get Monitoring config model
+     * 
+     * @return Rom_Monitoring_Model_Config
+     */
+    protected function getConfig()
+    {
+        if (true === is_null($this->config)) {
+            $this->config = Mage::getModel("rommonitoring/config");
+        }
+        return $this->config;
+    }
+
+    /**
+     *Set Monitoring config model
+     * 
+     * @param Rom_Monitoring_Model_Config $config
+     * @return Rom_Monitoring_Model_Monitorer_OrderCheck
+     */
+    protected function setConfig($config)
+    {
+        $this->config = $config;
+        return $this;
+    }
+    
+    /**
+     * Get store ids to filter
+     * 
+     * @return array
+     */
+    protected function getStoreIdFilter()
+    {
+        if ($this->config->isTypeGlobal()) {
+            return array();
+        }
+        
+        if ($this->config->isTypeStore()) {
+            return array($this->config->storeId);
+        }
+        
+        if ($this->config->isTypeWebsite()) {
+            return Mage::app()->getWebsite($this->config->websiteId)->getStoreIds();
+        }
+    }
 }

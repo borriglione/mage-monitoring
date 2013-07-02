@@ -94,6 +94,7 @@
         <rommonitoring>
             <order_check>
                 <order_status>processing,complete,closed</order_status>
+                <scopes>#global#</scopes>
                 <email_template_min>rommonitoring_order_check_email_template_min</email_template_min>
                 <email_template_max>rommonitoring_order_check_email_template_max</email_template_max>
                 <sender_mail_identity>sales</sender_mail_identity>

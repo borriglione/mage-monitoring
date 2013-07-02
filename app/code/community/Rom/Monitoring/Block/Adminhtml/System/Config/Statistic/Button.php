@@ -19,8 +19,18 @@ class Rom_Monitoring_Block_Adminhtml_System_Config_Statistic_Button
     protected function _getElementHtml(Varien_Data_Form_Element_Abstract $element)
     {
         $this->setElement($element);
+        
+        $urlParameters = array();
+        if (false === is_null(Mage::app()->getRequest()->getParam("website"))) {
+            $urlParameters["website_key"] = Mage::app()->getRequest()->getParam("website");
+        }
+        if (false === is_null(Mage::app()->getRequest()->getParam("store"))) {
+            $urlParameters["store_key"] = Mage::app()->getRequest()->getParam("store");
+        }
+        
         $url = Mage::helper('adminhtml')->getUrl(
-            'rommonitoring/adminhtml_config/statistic'
+            'rommonitoring/adminhtml_config/statistic',
+            $urlParameters
         ); 
         $url = rtrim($url,'/');
         $html = $this->getLayout()->createBlock('adminhtml/widget_button')
