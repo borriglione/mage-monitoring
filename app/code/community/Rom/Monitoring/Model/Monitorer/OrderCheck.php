@@ -137,7 +137,8 @@ class Rom_Monitoring_Model_Monitorer_OrderCheck extends Rom_Monitoring_Model_Mon
             "from_time" => $configuredRange["from_time"],
             "to_time" => $configuredRange["to_time"],
             "reference_order_amount" => $configuredRange["order_count"],
-            "calculated_order_amount" => $orderCount
+            "calculated_order_amount" => $orderCount,
+            "scope" => $this->getConfig()->type
         );
         
         $this->sendCheckFailedMail($senderKey, $receiverEmails, $eMailTemplate, $eMailTemplateData);
