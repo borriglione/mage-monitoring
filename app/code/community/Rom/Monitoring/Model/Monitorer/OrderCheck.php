@@ -45,7 +45,7 @@ class Rom_Monitoring_Model_Monitorer_OrderCheck extends Rom_Monitoring_Model_Mon
             }
             
             //Save range as checked
-            $this->getLogHandler()->saveRange($configuredRange, $orderCount);
+            $this->getLogHandler()->saveRange($configuredRange, $orderCount, $this->getConfig());
         }
     }
     
@@ -70,7 +70,7 @@ class Rom_Monitoring_Model_Monitorer_OrderCheck extends Rom_Monitoring_Model_Mon
         }
         
         //Check if range was not checked yet today
-        if (false === $this->getLogHandler()->isRangeWasCheckedToday($range)) {
+        if (false === $this->getLogHandler()->isRangeWasCheckedToday($range, $this->getConfig())) {
             Mage::helper("rommonitoring/data")->log("Range was already checked today");
             return false;
         }

@@ -21,11 +21,12 @@ class Rom_Monitoring_Model_Log extends Mage_Core_Model_Abstract
      * Check if range was already checked today
      * 
      * @param array $range
+     * @param Rom_Monitoring_Model_Config $config
      * @return boolean
      */
-    public function isRangeWasCheckedToday($range)
+    public function isRangeWasCheckedToday($range, $config)
     {
-        $rangeKey = Mage::helper("rommonitoring/data")->buildRangeKey($range);
+        $rangeKey = Mage::helper("rommonitoring/data")->buildRangeKey($range, $config);
         
         $checkRangeCollection = Mage::getModel("rommonitoring/log")
                                     ->getCollection()
@@ -46,13 +47,15 @@ class Rom_Monitoring_Model_Log extends Mage_Core_Model_Abstract
      * Save an entry for checked range in database
      * 
      * @param array $range
+     * @param int $orderAmount
+     * @param Rom_Monitoring_Model_Config $config
      * @return void
      */
-    public function saveRange($range, $orderAmount = 0)
+    public function saveRange($range, $orderAmount = 0, $config)
     {
         $log = Mage::getModel("rommonitoring/log");
         $log
-            ->setRangeKey(Mage::helper("rommonitoring/data")->buildRangeKey($range))
+            ->setRangeKey(Mage::helper("rommonitoring/data")->buildRangeKey($range, $config))
             ->setExecutionDay(date("Y-m-d", Mage::getModel('core/date')->timestamp(time())))
             ->setOrderAmount($orderAmount)
             ->setCreatedAt(now())

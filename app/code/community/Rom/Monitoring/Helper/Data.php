@@ -78,16 +78,26 @@ class Rom_Monitoring_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Build a range key out of from and to time
      * 
-     * 
      * @param array $range
+     * @param Rom_Monitoring_Model_Config $config
      * @return string
      */
-    public function buildRangeKey($range)
+    public function buildRangeKey($range, $config)
     {
         $fromTime = str_replace(":", "", $range["from_time"]);
         $toTime = str_replace(":", "", $range["to_time"]);
         
-        return $fromTime."_".$toTime."_".$range["count_type"];
+        $key = $fromTime."_".$toTime."_".$range["count_type"]."_".$config->type;
+        
+        if ($config->isTypeWebsite()) {
+            $key .= "_".$config->websiteId;
+        }
+        
+        if ($config->isTypeStore()) {
+            $key .= "_".$config->storeId;
+        }
+        
+        return $key;
     }
     
     /**
