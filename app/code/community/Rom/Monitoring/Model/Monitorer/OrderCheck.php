@@ -140,8 +140,19 @@ class Rom_Monitoring_Model_Monitorer_OrderCheck extends Rom_Monitoring_Model_Mon
             "to_time" => $configuredRange["to_time"],
             "reference_order_amount" => $configuredRange["order_count"],
             "calculated_order_amount" => $orderCount,
-            "scope" => $this->getConfig()->type
+            "scope" => $this->getConfig()->type,
+            "website_name" => "-",
+            "store_name" => "-",
+            "shop_url" => $this->getConfig()->getConfig("web/unsecure/base_url")
         );
+        
+        if ($this->config->isTypeStore()) {
+            $eMailTemplateData["store_name"] = Mage::app()->getStore($this->config->storeId)->getName();
+        }
+        
+        if ($this->config->isTypeWebsite()) {
+            $eMailTemplateData["website_name"] = Mage::app()->getWebsite($this->config->websiteId)->getName();
+        }
         
         $this->sendCheckFailedMail($senderKey, $receiverEmails, $eMailTemplate, $eMailTemplateData);
     }

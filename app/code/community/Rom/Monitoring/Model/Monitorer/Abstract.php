@@ -69,7 +69,7 @@ class Rom_Monitoring_Model_Monitorer_Abstract extends Varien_Object
      * 
      * @return Rom_Monitoring_Model_Config
      */
-    protected function getConfig()
+    public function getConfig()
     {
         if (true === is_null($this->config)) {
             $this->config = Mage::getModel("rommonitoring/config");
@@ -83,7 +83,7 @@ class Rom_Monitoring_Model_Monitorer_Abstract extends Varien_Object
      * @param Rom_Monitoring_Model_Config $config
      * @return Rom_Monitoring_Model_Monitorer_OrderCheck
      */
-    protected function setConfig($config)
+    public function setConfig($config)
     {
         $this->config = $config;
         return $this;
